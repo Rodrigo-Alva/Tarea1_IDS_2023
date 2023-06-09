@@ -9,9 +9,9 @@ import (
 	"os"
 )
 
-type node struct {
+type HTMLnode struct {
     tagName string;
-    children []*node;
+    children []*HTMLnode;
 }
 
 func main() {
