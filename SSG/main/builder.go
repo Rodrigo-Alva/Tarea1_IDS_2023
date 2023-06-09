@@ -2,7 +2,9 @@ package main
 
 import (
 	//"bufio"
+	"errors"
 	"fmt"
+	"io"
 	"log"
 	"os"
 )
@@ -32,8 +34,11 @@ func main() {
     //fileReader.Read(out);
 
     //fmt.Println(string(out));
-    for i := 0; i < 4; i++ {
-        fmt.Println(getLine(*file));
+    str, err := getLine(*file)
+
+    for ; err == nil; {
+        fmt.Println(str);
+        str, err = getLine(*file)
     }
 }
 
@@ -41,7 +46,10 @@ func getLine(file os.File) (string, error) {
     var str string;
     tempbuff := make([]byte, 1);
     for {
-        file.Read(tempbuff);
+        _, err := file.Read(tempbuff);
+        if err == io.EOF {
+            return "", errors.New("reached end of file");
+        }
         if string(tempbuff) == "\n" { break; }
         str += string(tempbuff);
     }
