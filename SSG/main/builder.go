@@ -18,10 +18,12 @@ type HTMLnode struct {
 
 func main() {
     fmt.Println("Opening file...");
+
     file, fileErr := os.Open("./test.md");
     if (fileErr != nil) {
         log.Fatal(fileErr);
     }
+
     defer func() {
         closingErr := file.Close();
         if (closingErr != nil) {
