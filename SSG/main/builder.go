@@ -11,6 +11,8 @@ import (
 
 type HTMLnode struct {
     tagName string;
+    id string;
+    className string;
     children []*HTMLnode;
 }
 
@@ -28,11 +30,8 @@ func main() {
     }();
 
     //out := make([]byte, 1024);
-
     //fileReader := bufio.NewReader(file);
-
     //fileReader.Read(out);
-
     //fmt.Println(string(out));
     str, err := getLine(*file)
 
